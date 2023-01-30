@@ -1,0 +1,9 @@
+com/example/assignment/Service/FeatureService.class
+com/example/assignment/AssignmentApplication.class
+com/example/assignment/model/Car.class
+com/example/assignment/controller/FeatureController.class
+com/example/assignment/model/Feature.class
+com/example/assignment/repository/CarRepository.class
+com/example/assignment/repository/FeatureRepository.class
+com/example/assignment/Service/CarService.class
+com/example/assignment/controller/CarController.class
