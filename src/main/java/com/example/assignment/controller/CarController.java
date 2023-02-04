@@ -1,9 +1,9 @@
 package com.example.assignment.controller;
 
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.assignment.service.CarService;
-import com.example.assignment.model.Car;
+import com.example.assignment.dto.CarDto;
 
 @RestController
 @RequestMapping(path = "api/v1/car")
@@ -27,26 +27,31 @@ public class CarController {
         this.carService = carService;
     }
 
+    @GetMapping(path = "{carId}")
+    public ResponseEntity<?> getCarById(@PathVariable("carId") Long carId) {
+        return carService.getCarById(carId);
+    }
+
     @GetMapping
-    public List<Car> getCars() {
+    public ResponseEntity<?> getCars() {
         return carService.getAllCars();
     }
 
     @PostMapping
-    public void addNewCar(@RequestBody Car car) {
-        carService.addNewCar(car);
+    public ResponseEntity<?> addNewCar(@RequestBody CarDto carDto) {
+        return carService.addNewCar(carDto);
     }
 
     @DeleteMapping(path = "{carId}")
-    public void deleteCar(@PathVariable("carId") Long carId) {
-        carService.deleteCar(carId);
+    public ResponseEntity<?> deleteCar(@PathVariable("carId") Long carId) {
+
+        return carService.deleteCar(carId);
     }
 
-    @PatchMapping(path= "{carId}")
-    public Car updateCar(@PathVariable("carId") Long carId, @RequestBody Map<String, Object> fields) {
+    @PatchMapping(path = "{carId}")
+    public ResponseEntity<?> updateCar(@PathVariable("carId") Long carId, @RequestBody Map<String, Object> fields) {
         return carService.updateCar(carId, fields);
+
     }
- 
- 
 
 }
